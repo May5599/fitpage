@@ -28,7 +28,11 @@ export default function Home() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          v.play();
+          v.play().catch(() => {
+            v.muted = true;
+            setMuted(true);
+            v.play().catch(() => {});
+          });
           setPlaying(true);
         } else {
           v.pause();
