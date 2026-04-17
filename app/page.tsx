@@ -1,15 +1,53 @@
 'use client';
 
 import Image from 'next/image';
+import { useRef, useState, useEffect } from 'react';
 
 export default function Home() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(true);
+  const [muted, setMuted] = useState(true);
+
+  function togglePlay() {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) { v.play(); setPlaying(true); }
+    else { v.pause(); setPlaying(false); }
+  }
+
+  function toggleMute() {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+  }
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          v.play();
+          setPlaying(true);
+        } else {
+          v.pause();
+          setPlaying(false);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(v);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#FAFAF8] text-[#111]">
 
       {/* ─── HERO ─── */}
       <section className="relative w-full bg-[#111] overflow-hidden" style={{ minHeight: '100svh' }}>
         <Image
-          src="https://gyatanutrition.com/wp-content/uploads/2025/09/pexels-823sl-2294361-scaled.jpg"
+          src="/DSC04732.jpg"
           alt="Hero background"
           fill
           priority
@@ -19,13 +57,13 @@ export default function Home() {
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-black/30" />
 
         {/* Cutout image — right side, clean transparent PNG on dark bg */}
-        <div className="absolute bottom-0 right-0 h-[95%] w-[42vw] max-w-md pointer-events-none">
+        <div className="absolute bottom-0 right-0 h-[80%] w-[48vw] md:h-[95%] md:w-[42vw] max-w-md pointer-events-none">
           <Image
-            src="/no bg shaker.png"
+            src="/no bg product .png"
             alt="Ceecefit"
             fill
             priority
-            sizes="(max-width: 768px) 42vw, 480px"
+            sizes="(max-width: 768px) 52vw, 480px"
             className="object-contain object-bottom"
           />
         </div>
@@ -38,25 +76,24 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 px-8 pb-14 z-10 md:max-w-[58%]">
+        <div className="absolute bottom-0 left-0 right-0 px-8 pb-14 z-10 max-w-[52%] md:max-w-[58%]">
           <p className="text-white/40 text-xs uppercase tracking-[0.3em] mb-4">@ceecefit</p>
           <h1
-            className="font-black text-white leading-[0.88] mb-8 uppercase"
-            style={{ fontSize: 'clamp(3.5rem, 9vw, 8rem)' }}
+            className="font-black text-white leading-[0.88] mb-8 uppercase text-[clamp(1.6rem,_7vw,_3.5rem)] md:text-[clamp(3.5rem,_9vw,_8rem)]"
           >
             Real food.<br />
             Real reps.<br />
             <span className="text-yellow-400">Real you.</span>
           </h1>
           <div className="flex items-center gap-4 mb-5">
-            <button className="px-7 py-3.5 bg-yellow-400 text-black font-bold rounded-full text-sm hover:bg-yellow-300 transition-all">
+            <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="px-7 py-3.5 bg-yellow-400 text-black font-bold rounded-full text-sm hover:bg-yellow-300 transition-all">
               Get 20% off ↓
-            </button>
+            </a>
             <span className="text-white/30 text-xs uppercase tracking-widest">scroll</span>
           </div>
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5">
+          <div className="hidden md:inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
-            <span className="text-white/80 text-xs font-bold uppercase tracking-[0.2em]">20% off both · code CEECEFIT</span>
+            <span className="text-white/80 text-xs font-bold uppercase tracking-[0.2em]">20% off · code CEECEFIT</span>
           </div>
         </div>
       </section>
@@ -82,7 +119,7 @@ export default function Home() {
       </section>
 
       {/* ─── DISCOUNT ─── wider, 20 visible on right */}
-      <section className="px-6 pb-6 max-w-4xl mx-auto">
+      <section className="px-6 pb-28 max-w-4xl mx-auto">
         <div className="bg-yellow-400 rounded-3xl relative overflow-hidden">
           <div className="flex items-stretch">
             {/* Left: content */}
@@ -96,9 +133,9 @@ export default function Home() {
               <div className="inline-flex bg-black rounded-2xl px-6 py-4 mb-6">
                 <span className="text-yellow-400 font-black text-xl md:text-2xl tracking-[0.2em]">CEECEFIT</span>
               </div>
-              <button className="w-full py-4 bg-black hover:bg-[#1a1a1a] text-white font-bold rounded-2xl text-lg transition-all">
+              <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="w-full py-4 bg-black hover:bg-[#1a1a1a] text-white font-bold rounded-2xl text-lg transition-all text-center block">
                 Grab the deal →
-              </button>
+              </a>
             </div>
             {/* Right: big decorative 20 — fully visible */}
             <div className="hidden md:flex items-center justify-end pr-10 shrink-0">
@@ -111,11 +148,12 @@ export default function Home() {
       </section>
 
       {/* ─── TALKING HEAD + WHY ─── */}
-      <section className="bg-[#111] text-white py-14 md:py-20">
+      <section className="bg-[#111] text-white pt-24 pb-28 md:py-20">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-0">
           <div className="md:w-[36%] shrink-0 flex justify-center md:justify-start">
-            <div className="w-full max-w-[320px] md:max-w-none aspect-9/16 rounded-2xl overflow-hidden bg-[#1a1a1a] relative mx-6 md:mx-0">
+            <div className="w-full max-w-[260px] md:max-w-none aspect-9/16 rounded-2xl overflow-hidden bg-[#1a1a1a] relative mx-6 md:mx-0">
               <video
+                ref={videoRef}
                 autoPlay
                 muted
                 loop
@@ -124,9 +162,36 @@ export default function Home() {
               >
                 <source src="/CeeCefit Promo Video_1.mp4" type="video/mp4" />
               </video>
-              <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 z-10">
-                <div className="w-6 h-6 rounded-full bg-white/20" />
-                <span className="text-[10px] text-white/50 uppercase tracking-wider">@ceecefit</span>
+              {/* Controls overlay */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between z-10">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-white/20" />
+                  <span className="text-[10px] text-white/50 uppercase tracking-wider">@ceecefit</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={toggleMute}
+                    className="w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all"
+                    aria-label={muted ? 'Unmute' : 'Mute'}
+                  >
+                    {muted ? (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.63 3.63a.996.996 0 000 1.41L7.29 8.7 7 9H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h3l3.29 3.29c.63.63 1.71.18 1.71-.71v-4.17l4.18 4.18c-.49.37-1.02.68-1.6.91-.36.15-.58.53-.58.92 0 .72.73 1.18 1.39.91.8-.33 1.55-.77 2.22-1.31l1.34 1.34a.996.996 0 101.41-1.41L5.05 3.63c-.39-.39-1.02-.39-1.42 0zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-3.83-2.4-7.11-5.78-8.4-.59-.23-1.22.23-1.22.86v.19c0 .38.25.71.61.85C17.18 6.54 19 9.06 19 12zm-8.71-6.29l-.17.17L12 7.76V6.41c0-.89-1.08-1.33-1.71-.7zM16.5 12A4.5 4.5 0 0014 7.97v1.79l2.48 2.48c.01-.08.02-.16.02-.24z"/></svg>
+                    ) : (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                    )}
+                  </button>
+                  <button
+                    onClick={togglePlay}
+                    className="w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all"
+                    aria-label={playing ? 'Pause' : 'Play'}
+                  >
+                    {playing ? (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    ) : (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -186,9 +251,9 @@ export default function Home() {
                   </button>
                 ))}
               </div>
-              <button className="mt-auto w-full py-3.5 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-xl text-sm transition-all">
+              <a href="https://gyatanutrition.com/product/whey/" target="_blank" rel="noopener noreferrer" className="mt-auto w-full py-3.5 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-xl text-sm transition-all text-center block">
                 Shop
-              </button>
+              </a>
             </div>
           </div>
 
@@ -215,9 +280,9 @@ export default function Home() {
                 <span className="px-4 py-1.5 rounded-full bg-white/10 text-xs font-semibold text-white/60">Whey</span>
                 <span className="px-4 py-1.5 rounded-full bg-white/10 text-xs font-semibold text-white/60">Casein</span>
               </div>
-              <button className="mt-auto w-full py-3.5 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-xl text-sm transition-all">
+              <a href="https://gyatanutrition.com/product/whey-protein-twin-pack/" target="_blank" rel="noopener noreferrer" className="mt-auto w-full py-3.5 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-xl text-sm transition-all text-center block">
                 Shop
-              </button>
+              </a>
             </div>
           </div>
 
@@ -272,7 +337,7 @@ export default function Home() {
                 href="https://gyatanutrition.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-4 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-2xl text-sm transition-all shrink-0 w-fit"
+                className="flex items-center justify-center gap-2 px-7 py-4 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-2xl text-sm transition-all shrink-0 w-full md:w-fit"
               >
                 Visit Gyata Nutrition →
               </a>
@@ -290,7 +355,7 @@ export default function Home() {
         >
           CEECEFIT
         </span>
-        <div className="absolute bottom-0 right-0 md:right-8 h-full w-[38vw] max-w-xs md:max-w-sm">
+        <div className="absolute bottom-0 right-0 md:right-8 h-full w-[42vw] md:w-[38vw] max-w-xs md:max-w-sm">
           <Image
             src="/no bg product .png"
             alt="Ceecefit"
@@ -299,11 +364,10 @@ export default function Home() {
             className="object-contain object-bottom"
           />
         </div>
-        <div className="relative z-10 px-8 pt-16 md:pt-20 max-w-sm">
+        <div className="relative z-10 px-8 pt-16 md:pt-20 max-w-[56%] md:max-w-sm">
           <p className="text-[10px] uppercase tracking-[0.35em] text-white/30 mb-4">the face behind it</p>
           <p
-            className="font-black leading-tight text-white mb-8"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
+            className="font-black leading-tight text-white mb-8 text-[clamp(1.4rem,_4vw,_2rem)] md:text-[clamp(2rem,_4vw,_3.2rem)]"
           >
             Real person.<br />
             Real tries.<br />
@@ -327,9 +391,9 @@ export default function Home() {
             <span className="text-yellow-400">my code.</span><br />
             your call.
           </h2>
-          <button className="w-full max-w-xs mx-auto block py-5 bg-yellow-400 hover:bg-yellow-300 active:scale-[0.99] text-black font-black rounded-2xl text-xl transition-all mb-8">
+          <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="w-full max-w-xs mx-auto block py-5 bg-yellow-400 hover:bg-yellow-300 active:scale-[0.99] text-black font-black rounded-2xl text-xl transition-all mb-8 text-center">
             CEECEFIT →
-          </button>
+          </a>
           <div className="flex justify-center gap-3">
             <a href="#" className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-white/50 hover:text-white hover:border-white/30 transition-all text-sm">
               <span>📸</span> @ceecefit
