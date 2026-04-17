@@ -45,7 +45,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#FAFAF8] text-[#111]">
 
       {/* ─── HERO ─── */}
-      <section className="relative w-full bg-[#111] overflow-hidden" style={{ minHeight: '100svh' }}>
+      <section className="relative w-full bg-[#111] overflow-hidden min-h-[680px] md:min-h-screen">
         <Image
           src="/DSC04732.jpg"
           alt="Hero background"
