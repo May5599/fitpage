@@ -61,7 +61,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-black/30" />
 
         {/* Cutout image — right side, clean transparent PNG on dark bg */}
-        <div className="absolute bottom-0 right-0 h-[80%] w-[48vw] md:h-[95%] md:w-[42vw] max-w-md pointer-events-none">
+        <div className="absolute bottom-0 right-0 h-[80%] w-[44vw] md:h-[95%] md:w-[42vw] max-w-md pointer-events-none">
           <Image
             src="/no bg product .png"
             alt="Ceecefit"
@@ -80,7 +80,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 px-8 pb-14 z-10 max-w-[52%] md:max-w-[58%]">
+        <div className="absolute bottom-0 left-0 right-0 px-8 pb-14 z-10 max-w-[56%] md:max-w-[58%]">
           <p className="text-white/40 text-xs uppercase tracking-[0.3em] mb-4">@ceecefit</p>
           <h1
             className="font-black text-white leading-[0.88] mb-8 uppercase text-[clamp(1.6rem,_7vw,_3.5rem)] md:text-[clamp(3.5rem,_9vw,_8rem)]"
@@ -90,7 +90,7 @@ export default function Home() {
             <span className="text-yellow-400">Real you.</span>
           </h1>
           <div className="flex items-center gap-4 mb-5">
-            <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="px-7 py-3.5 bg-yellow-400 text-black font-bold rounded-full text-sm hover:bg-yellow-300 transition-all">
+            <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="px-4 py-3 md:px-7 md:py-3.5 bg-yellow-400 text-black font-bold rounded-full text-xs md:text-sm hover:bg-yellow-300 transition-all whitespace-nowrap">
               Get 20% off ↓
             </a>
             <span className="text-white/30 text-xs uppercase tracking-widest">scroll</span>
@@ -132,7 +132,7 @@ export default function Home() {
               <h2 className="font-black text-black leading-[0.9] mb-2" style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}>
                 20% OFF
               </h2>
-              <p className="text-xl md:text-2xl font-bold text-black/60 mb-6">everything.</p>
+              <p className="text-xl md:text-2xl font-bold text-black/60 mb-6">both proteins.</p>
               <p className="text-black/50 text-sm mb-6">Drop this at checkout. Works on both products.</p>
               <div className="inline-flex bg-black rounded-2xl px-6 py-4 mb-6">
                 <span className="text-yellow-400 font-black text-xl md:text-2xl tracking-[0.2em]">CEECEFIT</span>
@@ -279,10 +279,10 @@ export default function Home() {
               </div>
               <p className="text-[10px] uppercase tracking-[0.3em] text-white/25 mb-1">Gyata Nutrition</p>
               <h3 className="text-3xl font-black mb-2">Twin Pack</h3>
-              <p className="text-white/50 text-sm mb-6 leading-relaxed">Two proteins, one price. Whey + Casein bundled for less.</p>
+              <p className="text-white/50 text-sm mb-6 leading-relaxed">Protein + Protein. Two full tubs, one price.</p>
               <div className="flex gap-2 mb-8">
-                <span className="px-4 py-1.5 rounded-full bg-white/10 text-xs font-semibold text-white/60">Whey</span>
-                <span className="px-4 py-1.5 rounded-full bg-white/10 text-xs font-semibold text-white/60">Casein</span>
+                <span className="px-4 py-1.5 rounded-full bg-white/10 text-xs font-semibold text-white/60">Protein</span>
+                <span className="px-4 py-1.5 rounded-full bg-white/10 text-xs font-semibold text-white/60">Protein</span>
               </div>
               <a href="https://gyatanutrition.com/product/whey-protein-twin-pack/" target="_blank" rel="noopener noreferrer" className="mt-auto w-full py-3.5 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-xl text-sm transition-all text-center block">
                 Shop
