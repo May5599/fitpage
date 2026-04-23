@@ -87,7 +87,7 @@ export default function Home() {
           >
             Real food.<br />
             Real reps.<br />
-            <span className="text-yellow-400">Real you.</span>
+            <span className="text-yellow-400">Real results.</span>
           </h1>
           <div className="flex items-center gap-4 mb-5">
             <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="px-4 py-3 md:px-7 md:py-3.5 bg-yellow-400 text-black font-bold rounded-full text-xs md:text-sm hover:bg-yellow-300 transition-all whitespace-nowrap">
@@ -110,9 +110,8 @@ export default function Home() {
             style={{ fontSize: 'clamp(6rem, 18vw, 11rem)' }}
           >"</span>
           <p className="relative text-2xl md:text-4xl font-bold leading-snug text-[#222] pt-10 md:pt-14">
-            Not here to sell you a lifestyle —<br />
-            just sharing what&apos;s{' '}
-            <em className="not-italic text-yellow-500">actually been working</em>{' '}
+            No fluff—{' '}
+            <em className="not-italic text-yellow-500">just what&apos;s been working</em>{' '}
             for me.
           </p>
           <div className="mt-8 flex items-center gap-3">
@@ -133,12 +132,12 @@ export default function Home() {
                 20% OFF
               </h2>
               <p className="text-xl md:text-2xl font-bold text-black/60 mb-6">both proteins.</p>
-              <p className="text-black/50 text-sm mb-6">Drop this at checkout. Works on both products.</p>
+              <p className="text-black/50 text-sm mb-6">Use code Ceecefit at checkout for 20% off protein powders.</p>
               <div className="inline-flex bg-black rounded-2xl px-6 py-4 mb-6">
                 <span className="text-yellow-400 font-black text-xl md:text-2xl tracking-[0.2em]">CEECEFIT</span>
               </div>
               <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="w-full py-4 bg-black hover:bg-[#1a1a1a] text-white font-bold rounded-2xl text-lg transition-all text-center block">
-                Grab the deal →
+                Grab yours!
               </a>
             </div>
             {/* Right: big decorative 20 — fully visible */}
@@ -205,9 +204,9 @@ export default function Home() {
               className="font-black text-white leading-[0.92] mb-8 uppercase"
               style={{ fontSize: 'clamp(2.6rem, 5vw, 4.5rem)' }}
             >
-              Spotted them.<br />
-              Got curious.<br />
-              <span className="text-yellow-400">Now trying.</span>
+              Spotted it.<br />
+              Tried it.<br />
+              <span className="text-yellow-400">Now it&apos;s part of my routine.</span>
             </p>
             <div className="space-y-4 text-white/50 text-sm leading-relaxed max-w-sm">
               <p>Kept seeing Gyata everywhere. Decided to actually pick it up instead of just scrolling past.</p>
