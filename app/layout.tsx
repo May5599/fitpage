@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Ceecefit × Gyata Nutrition | 20% Off With Code CEECEFIT",
-  description: "Ceecefit's go-to protein. Real food, real reps — get 20% off Gyata Nutrition's Whey & Twin Pack with code CEECEFIT. Canadian-made, clean formula.",
+  description: "Ceecefit's go-to protein. Real food, real reps   get 20% off Gyata Nutrition's Whey & Twin Pack with code CEECEFIT. Canadian-made, clean formula.",
   keywords: ["Ceecefit", "Gyata Nutrition", "protein powder", "whey protein", "fitness creator", "CEECEFIT discount", "Canadian protein"],
   authors: [{ name: "Ceecefit" }],
   creator: "Ceecefit",

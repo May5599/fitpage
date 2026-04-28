@@ -39,7 +39,7 @@ export default function Home() {
           setPlaying(false);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
     observer.observe(v);
     return () => observer.disconnect();
@@ -49,28 +49,41 @@ export default function Home() {
     <div className="min-h-screen bg-[#FAFAF8] text-[#111]">
 
       {/* ─── HERO ─── */}
-      <section className="relative w-full bg-[#111] overflow-hidden min-h-[680px] md:min-h-screen">
-        <Image
-          src="/DSC04732.jpg"
-          alt="Hero background"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+      <section className="relative w-full bg-[#111] overflow-hidden min-h-[600px] md:min-h-screen">
+        <picture className="absolute inset-0">
+          <source media="(max-width: 767px)" srcSet="/DSC04685.JPG" />
+          <Image
+            src="/DSC04732.jpg"
+            alt="Hero background"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </picture>
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-black/30" />
 
-        {/* Cutout image — right side, clean transparent PNG on dark bg */}
-        <div className="absolute bottom-0 right-0 h-[80%] w-[44vw] md:h-[95%] md:w-[42vw] max-w-md pointer-events-none">
+        {/* Cutout image - smaller on mobile, full on desktop */}
+        <div className="hidden md:block absolute bottom-0 right-0 h-[70%] w-[50vw] pointer-events-none">
           <Image
-            src="/no bg product .png"
+            src="/ceecefit-no-bg.png"
             alt="Ceecefit"
             fill
             priority
-            sizes="(max-width: 768px) 52vw, 480px"
+            sizes="180px"
             className="object-contain object-bottom"
           />
         </div>
+        {/* <div className="hidden md:block absolute bottom-0 right-0 h-[95%] w-[42vw] max-w-md pointer-events-none">
+          <Image
+            src="/ceecefit-no-bg.png"
+            alt="Ceecefit"
+            fill
+            priority
+            sizes="480px"
+            className="object-contain object-bottom"
+          />
+        </div> */}
 
         <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 pt-8 z-10">
           <span className="text-white/60 text-xs uppercase tracking-[0.3em]">ceecefit</span>
@@ -80,16 +93,16 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 px-8 pb-14 z-10 max-w-[56%] md:max-w-[58%]">
+        <div className="absolute bottom-0 left-0 right-0 px-6 md:px-8 pb-12 md:pb-14 z-10 max-w-full md:max-w-[58%]">
           <p className="text-white/40 text-xs uppercase tracking-[0.3em] mb-4">@ceecefit</p>
           <h1
-            className="font-black text-white leading-[0.88] mb-8 uppercase text-[clamp(1.6rem,_7vw,_3.5rem)] md:text-[clamp(3.5rem,_9vw,_8rem)]"
+            className="font-black text-white leading-[0.88] mb-8 uppercase text-[clamp(1.8rem,_6vw,_3.5rem)] md:text-[clamp(3.5rem,_9vw,_8rem)]"
           >
             Real food.<br />
             Real reps.<br />
             <span className="text-yellow-400">Real results.</span>
           </h1>
-          <div className="flex items-center gap-4 mb-5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-5">
             <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="px-4 py-3 md:px-7 md:py-3.5 bg-yellow-400 text-black font-bold rounded-full text-xs md:text-sm hover:bg-yellow-300 transition-all whitespace-nowrap">
               Get 20% off ↓
             </a>
@@ -103,14 +116,14 @@ export default function Home() {
       </section>
 
       {/* ─── HOOK ─── */}
-      <section className="px-8 py-20 md:py-28 max-w-4xl mx-auto">
+      <section className="px-6 md:px-8 py-16 md:py-28 max-w-4xl mx-auto">
         <div className="relative">
           <span
             className="absolute -top-6 -left-2 font-black text-[#EDECEA] leading-none select-none pointer-events-none"
-            style={{ fontSize: 'clamp(6rem, 18vw, 11rem)' }}
+            style={{ fontSize: 'clamp(4rem, 16vw, 11rem)' }}
           >"</span>
-          <p className="relative text-2xl md:text-4xl font-bold leading-snug text-[#222] pt-10 md:pt-14">
-            No fluff—{' '}
+          <p className="relative text-xl md:text-4xl font-bold leading-snug text-[#222] pt-8 md:pt-14">
+            No fluff {' '}
             <em className="not-italic text-yellow-500">just what&apos;s been working</em>{' '}
             for me.
           </p>
@@ -118,20 +131,21 @@ export default function Home() {
             <div className="w-8 h-px bg-[#CCC]" />
             <span className="text-xs text-[#AAA] uppercase tracking-widest">Ceecefit</span>
           </div>
+
         </div>
       </section>
 
       {/* ─── DISCOUNT ─── wider, 20 visible on right */}
-      <section className="px-6 pb-28 max-w-4xl mx-auto">
-        <div className="bg-yellow-400 rounded-3xl relative overflow-hidden">
-          <div className="flex items-stretch">
+      <section className="px-6 md:px-6 pb-24 md:pb-28 max-w-4xl mx-auto">
+        <div className="bg-yellow-400 rounded-2xl md:rounded-3xl relative overflow-hidden">
+          <div className="flex flex-col md:flex-row items-stretch">
             {/* Left: content */}
-            <div className="p-8 md:p-12 flex-1">
+            <div className="p-6 md:p-12 flex-1">
               <p className="text-[10px] uppercase tracking-[0.35em] text-black/40 font-bold mb-3">Limited offer</p>
-              <h2 className="font-black text-black leading-[0.9] mb-2" style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)' }}>
+              <h2 className="font-black text-black leading-[0.9] mb-2" style={{ fontSize: 'clamp(2.2rem, 7vw, 5.5rem)' }}>
                 20% OFF
               </h2>
-              <p className="text-xl md:text-2xl font-bold text-black/60 mb-6">both proteins.</p>
+              <p className="text-lg md:text-2xl font-bold text-black/60 mb-6">on proteins.</p>
               <p className="text-black/50 text-sm mb-6">Use code Ceecefit at checkout for 20% off protein powders.</p>
               <div className="inline-flex bg-black rounded-2xl px-6 py-4 mb-6">
                 <span className="text-yellow-400 font-black text-xl md:text-2xl tracking-[0.2em]">CEECEFIT</span>
@@ -140,7 +154,7 @@ export default function Home() {
                 Grab yours!
               </a>
             </div>
-            {/* Right: big decorative 20 — fully visible */}
+            {/* Right: big decorative 20   fully visible */}
             <div className="hidden md:flex items-center justify-end pr-10 shrink-0">
               <span className="font-black text-yellow-300/60 leading-none select-none pointer-events-none" style={{ fontSize: 'clamp(8rem, 14vw, 14rem)' }}>
                 20
@@ -151,10 +165,10 @@ export default function Home() {
       </section>
 
       {/* ─── TALKING HEAD + WHY ─── */}
-      <section className="bg-[#111] text-white pt-24 pb-28 md:py-20">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-0">
-          <div className="md:w-[36%] shrink-0 flex justify-center md:justify-start">
-            <div className="w-full max-w-[260px] md:max-w-none aspect-9/16 rounded-2xl overflow-hidden bg-[#1a1a1a] relative mx-6 md:mx-0">
+      <section className="bg-[#111] text-white pt-16 md:pt-24 pb-16 md:pb-28 md:py-20">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-0">
+          <div className="md:w-[36%] shrink-0 flex justify-center md:justify-start order-2 md:order-1">
+            <div className="w-full max-w-[280px] md:max-w-none aspect-9/16 rounded-2xl overflow-hidden bg-[#1a1a1a] relative mx-0 md:mx-0">
               <video
                 ref={videoRef}
                 autoPlay
@@ -163,7 +177,7 @@ export default function Home() {
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover"
               >
-                <source src="/CeeCefit Promo Video_1.mp4" type="video/mp4" />
+                <source src="/CeeCeFit Final.mp4" type="video/mp4" />
               </video>
               {/* Controls overlay */}
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between z-10">
@@ -198,11 +212,11 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex-1 flex flex-col justify-center px-8 py-16 md:py-0 md:px-14 xl:px-20">
+          <div className="flex-1 flex flex-col justify-center px-6 md:px-8 py-12 md:py-0 md:px-14 xl:px-20 order-1 md:order-2">
             <p className="text-[10px] uppercase tracking-[0.35em] text-white/30 mb-6">why these</p>
             <p
               className="font-black text-white leading-[0.92] mb-8 uppercase"
-              style={{ fontSize: 'clamp(2.6rem, 5vw, 4.5rem)' }}
+              style={{ fontSize: 'clamp(2.2rem, 5vw, 4.5rem)' }}
             >
               Spotted it.<br />
               Tried it.<br />
@@ -221,17 +235,17 @@ export default function Home() {
       </section>
 
       {/* ─── STACK ─── */}
-      <section className="px-6 py-20 max-w-6xl mx-auto">
-        <div className="flex items-end justify-between mb-14 max-w-3xl">
-          <h2 className="font-black" style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)' }}>The stack.</h2>
-          <p className="text-[#888] text-sm max-w-32.5 text-right leading-relaxed hidden md:block font-semibold">
+      <section className="px-6 md:px-6 py-16 md:py-20 max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row items-end justify-between mb-12 md:mb-14 max-w-3xl gap-4">
+          <h2 className="font-black" style={{ fontSize: 'clamp(2.2rem, 6vw, 5rem)' }}>The stack.</h2>
+          <p className="text-[#888] text-sm max-w-32.5 text-left md:text-right leading-relaxed font-semibold">
             two products.<br />that&apos;s it.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
 
-          {/* PRODUCT 1 — Whey Protein */}
+          {/* PRODUCT 1   Whey Protein */}
           <div className="bg-white rounded-3xl overflow-hidden hover:-translate-y-1 transition-transform duration-300 shadow-[0_2px_24px_rgba(0,0,0,0.06)] flex flex-col">
             <div className="relative bg-[#111] flex items-end justify-center overflow-hidden" style={{ height: '340px' }}>
               <span className="absolute bottom-0 left-1/2 -translate-x-1/2 font-black text-white/5 leading-none select-none uppercase pointer-events-none whitespace-nowrap" style={{ fontSize: '8rem' }}>Whey</span>
@@ -260,7 +274,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* PRODUCT 2 — Twin Pack */}
+          {/* PRODUCT 2   Twin Pack */}
           <div className="bg-[#111] text-white rounded-3xl overflow-hidden hover:-translate-y-1 transition-transform duration-300 flex flex-col">
             <div className="relative bg-[#f5f4f1] flex items-end justify-center overflow-hidden" style={{ height: '340px' }}>
               <span className="absolute bottom-0 left-1/2 -translate-x-1/2 font-black text-black/5 leading-none select-none uppercase pointer-events-none whitespace-nowrap" style={{ fontSize: '8rem' }}>Twin</span>
@@ -292,7 +306,7 @@ export default function Home() {
         </div>
 
         <p className="text-center text-[#888] text-sm font-bold mt-8 uppercase tracking-[0.2em]">
-          20% off both · code CEECEFIT
+          20% off  · code CEECEFIT
         </p>
       </section>
 
@@ -302,18 +316,18 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
 
             {/* Logo + Canadian badge */}
-            <div className="shrink-0 flex flex-col items-start gap-5">
-              <div className="relative w-48 h-20">
+            <div className="shrink-0 flex flex-col items-start gap-5 w-full md:w-auto">
+              <div className="relative w-32 md:w-48 h-12 md:h-20">
                 <Image
                   src="https://gyatanutrition.com/wp-content/uploads/2025/12/gyata-big.png"
                   alt="Gyata Nutrition"
                   fill
-                  sizes="192px"
+                  sizes="(max-width: 768px) 128px, 192px"
                   className="object-contain object-left"
                 />
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-3xl">🇨🇦</span>
+                <span className="text-2xl md:text-3xl">🇨🇦</span>
                 <p className="text-sm font-bold text-white tracking-wide">Proudly Canadian</p>
               </div>
             </div>
@@ -322,7 +336,7 @@ export default function Home() {
             <div className="hidden md:block w-px self-stretch bg-white/10" />
 
             {/* Copy + CTA */}
-            <div className="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div className="flex-1 flex flex-col gap-6 md:gap-8">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.35em] text-white/30 mb-3">the brand behind it</p>
                 <h3
@@ -340,7 +354,7 @@ export default function Home() {
                 href="https://gyatanutrition.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-7 py-4 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-2xl text-sm transition-all shrink-0 w-full md:w-fit"
+                className="flex items-center justify-center md:justify-start gap-2 px-7 py-4 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-2xl text-sm transition-all w-full md:w-fit"
               >
                 Visit Gyata Nutrition →
               </a>
@@ -351,65 +365,147 @@ export default function Home() {
       </section>
 
       {/* ─── POSTER ─── taller, dark */}
-      <section className="relative bg-[#0d0d0d] overflow-hidden" style={{ minHeight: '680px', maxHeight: '88vh' }}>
+      {/* <section className="relative bg-[#0d0d0d] overflow-hidden flex flex-col-reverse md:flex-row md:items-end" style={{ minHeight: '400px' }}>
         <span
           className="absolute inset-0 flex items-center justify-center font-black text-white/4 leading-none select-none pointer-events-none whitespace-nowrap"
-          style={{ fontSize: 'clamp(7rem, 26vw, 22rem)' }}
+          style={{ fontSize: 'clamp(2.5rem, 16vw, 22rem)' }}
         >
           CEECEFIT
         </span>
-        <div className="absolute bottom-0 right-0 md:right-8 h-full w-[42vw] md:w-[38vw] max-w-xs md:max-w-sm">
+        <div className="relative w-full md:absolute md:bottom-0 md:right-0 md:right-8 h-[150px] md:h-full md:w-[38vw] md:max-w-sm z-0">
           <Image
-            src="/no bg product .png"
+            src="/ceecefit-no-bg.png"
             alt="Ceecefit"
             fill
-            sizes="(max-width: 768px) 38vw, 360px"
+            sizes="(max-width: 768px) 100vw, 360px"
             className="object-contain object-bottom"
           />
         </div>
-        <div className="relative z-10 px-8 pt-16 md:pt-20 max-w-[56%] md:max-w-sm">
+        <div className="relative z-10 px-6 md:px-8 pt-12 md:pt-20 pb-8 md:pb-0 w-full md:max-w-md">
           <p className="text-[10px] uppercase tracking-[0.35em] text-white/30 mb-4">the face behind it</p>
           <p
-            className="font-black leading-tight text-white mb-8 text-[clamp(1.4rem,_4vw,_2rem)] md:text-[clamp(2rem,_4vw,_3.2rem)]"
+            className="font-black leading-tight text-white mb-8 text-[clamp(1.5rem,_5vw,_2.2rem)] md:text-[clamp(2rem,_4vw,_3.2rem)]"
           >
             Real person.<br />
             Real tries.<br />
             <span className="text-yellow-400">No script.</span>
           </p>
-          <button className="px-6 py-3 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-full text-sm transition-all">
+          <a href="https://www.instagram.com/ceecefit/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-full text-sm transition-all inline-block">
             Follow @ceecefit →
-          </button>
+          </a>
         </div>
-      </section>
+      </section> */}
+
+      <section className="relative bg-[#0d0d0d] overflow-hidden flex flex-col md:flex-row md:items-end min-h-[420px] md:min-h-[460px]">
+
+  {/* BIG BACKGROUND TEXT */}
+  <span
+    className="absolute inset-0 flex items-center justify-center md:items-center md:justify-center font-black text-white/5 leading-none select-none pointer-events-none whitespace-nowrap"
+    style={{
+      fontSize: 'clamp(6rem, 28vw, 22rem)'
+    }}
+  >
+    CEECEFIT
+  </span>
+
+  {/* IMAGE */}
+  <div
+  className="
+    absolute bottom-0 right-0
+    w-[70vw] h-[90%]           /* mobile */
+    translate-x-[18%]
+
+    md:w-[28vw]                /* 🔥 smaller like old */
+    md:max-w-[320px]           /* 🔥 cap size */
+    md:h-[85%]                 /* 🔥 not too tall */
+    md:bottom-[0px]            /* aligned properly */
+    md:right-[40px]            /* 🔥 push inside a bit */
+    md:translate-x-0
+
+    z-0
+  "
+>
+ <Image
+  src="/ceecefit-no-bg.png"
+  alt="Ceecefit"
+  fill
+  priority   // 🔥 important
+  sizes="(max-width: 768px) 70vw, 320px"
+  className="object-contain object-bottom"
+/>
+</div>
+
+  {/* TEXT CONTENT */}
+  <div
+    className="
+      relative z-10
+      px-6 md:px-8
+      pt-12 md:pt-20
+      pb-10 md:pb-0
+      w-full md:max-w-md
+    "
+  >
+    <p className="text-[10px] uppercase tracking-[0.35em] text-white/30 mb-4">
+      the face behind it
+    </p>
+
+    <p
+      className="font-black leading-tight text-white mb-8"
+      style={{
+        fontSize: 'clamp(1.8rem, 6vw, 3.2rem)'
+      }}
+    >
+      Real person.<br />
+      Real tries.<br />
+      <span className="text-yellow-400">No script.</span>
+    </p>
+
+    <a
+      href="https://www.instagram.com/ceecefit/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="px-6 py-3 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-full text-sm transition-all inline-block"
+    >
+      Follow @ceecefit →
+    </a>
+  </div>
+
+</section>
 
       {/* ─── FINAL CTA ─── */}
-      <section className="bg-[#111] text-white px-8 py-24">
+      <section className="bg-[#111] text-white px-6 md:px-8 py-20 md:py-24">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-[10px] uppercase tracking-[0.35em] text-white/30 mb-6">ready to try it?</p>
           <h2
-            className="font-black leading-[0.88] uppercase mb-12"
-            style={{ fontSize: 'clamp(2.8rem, 9vw, 7rem)' }}
+            className="font-black leading-[0.88] uppercase mb-10 md:mb-12"
+            style={{ fontSize: 'clamp(2.2rem, 8vw, 7rem)' }}
           >
             20% off.<br />
             <span className="text-yellow-400">my code.</span><br />
             your call.
           </h2>
-          <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="w-full max-w-xs mx-auto block py-5 bg-yellow-400 hover:bg-yellow-300 active:scale-[0.99] text-black font-black rounded-2xl text-xl transition-all mb-8 text-center">
-            CEECEFIT →
+          <a href="https://gyatanutrition.com/shop/" target="_blank" rel="noopener noreferrer" className="w-full max-w-xs mx-auto block py-4 md:py-5 bg-yellow-400 hover:bg-yellow-300 active:scale-[0.99] text-black font-black rounded-2xl text-lg md:text-xl transition-all mb-8 text-center">
+            Shop →
           </a>
-          <div className="flex justify-center gap-3">
-            <a href="#" className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-white/50 hover:text-white hover:border-white/30 transition-all text-sm">
-              <span>📸</span> @ceecefit
+          <div className="flex flex-col sm:flex-row justify-center gap-3">
+            <a href="https://www.instagram.com/ceecefit/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-white/50 hover:text-white hover:border-white/30 transition-all text-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+              @ceecefit
             </a>
-            <a href="#" className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-white/50 hover:text-white hover:border-white/30 transition-all text-sm">
-              <span>▶</span> YouTube
+            <a href="https://www.youtube.com/@ceecefit" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-white/50 hover:text-white hover:border-white/30 transition-all text-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              YouTube
             </a>
           </div>
         </div>
       </section>
 
       <footer className="bg-[#0a0a0a] px-8 py-6 text-center text-[10px] text-white/15 uppercase tracking-widest">
-        © 2024 Ceecefit · in collab with Gyata Nutrition
+        © 2026 Ceecefit · in collab with Gyata Nutrition
       </footer>
 
     </div>
