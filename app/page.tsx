@@ -64,16 +64,17 @@ export default function Home() {
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-black/30" />
 
         {/* Cutout image - smaller on mobile, full on desktop */}
-        <div className="hidden md:block absolute bottom-0 right-0 h-[70%] w-[50vw] pointer-events-none">
-          <Image
-            src="/ceecefit-no-bg.png"
-            alt="Ceecefit"
-            fill
-            priority
-            sizes="180px"
-            className="object-contain object-bottom"
-          />
-        </div>
+        <div className="hidden md:block absolute bottom-0 right-0 h-[70%] w-[50vw] translate-x-[12%] pointer-events-none">
+  <Image
+    src="/ceecefit-no-bg.png"
+    alt="Ceecefit"
+    fill
+    priority
+    quality={100}
+    sizes="(max-width: 768px) 100vw, 50vw"
+    className="object-contain object-bottom"
+  />
+</div>
         {/* <div className="hidden md:block absolute bottom-0 right-0 h-[95%] w-[42vw] max-w-md pointer-events-none">
           <Image
             src="/ceecefit-no-bg.png"
